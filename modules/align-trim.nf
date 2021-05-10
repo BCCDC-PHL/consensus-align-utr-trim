@@ -23,7 +23,7 @@ process getConsensusFile {
   executor 'local'
 
   input:
-      tuple path(sampleDir)
+      path(sampleDir)
 
   output:
       tuple val(sampleName), path("${sampleName}.consensus.fasta")
