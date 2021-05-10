@@ -31,7 +31,7 @@ process getConsensusFile {
   script:
       sampleName = sampleDir.baseName
       """
-      sed -E 's/^>([[:alnum:]]+).*/>\1/' ${sampleDir}/${sampleName}.consensus.fasta > ${sampleName}.consensus.fasta
+      sed -E 's/^>([[:alnum:]]+).*/>\\1/' ${sampleDir}/${sampleName}.consensus.fasta > ${sampleName}.consensus.fasta
       """  
 }
 
