@@ -26,12 +26,14 @@ process getConsensusFile {
       path(sampleDir)
 
   output:
-      tuple val(sampleName), path("${sampleName}.consensus.fasta")
+      tuple val(sampleName), path("${sampleName}.consensus.fasta"), optional: true
 
   script:
       sampleName = sampleDir.baseName
       """
-      sed -E 's/^>([[:alnum:]]+).*/>\\1/' ${sampleDir}/${sampleName}.consensus.fasta > ${sampleName}.consensus.fasta
+      if [[ -f ${sampleDir}/${sampleName}.consensus.fasta ]]; then
+        sed -E 's/^>([[:alnum:]]+).*/>\\1/' ${sampleDir}/${sampleName}.consensus.fasta > ${sampleName}.consensus.fasta
+      fi
       """  
 }
 
