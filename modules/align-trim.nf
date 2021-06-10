@@ -33,6 +33,8 @@ process getConsensusFile {
       """
       if [[ -f ${sampleDir}/${sampleName}.consensus.fasta ]]; then
         sed -E 's/^>([[:alnum:]]+).*/>\\1/' ${sampleDir}/${sampleName}.consensus.fasta > ${sampleName}.consensus.fasta
+      elif [[ -f ${sampleDir}/${sampleName}.corrected.consensus.fasta ]]; then
+        sed -E 's/^>([[:alnum:]]+).*/>\\1/' ${sampleDir}/${sampleName}.corrected.consensus.fasta > ${sampleName}.consensus.fasta
       fi
       """  
 }
