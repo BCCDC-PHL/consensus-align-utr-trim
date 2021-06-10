@@ -15,7 +15,7 @@ workflow {
   ch_sample_dirs = Channel.fromPath("${params.run_dir}/*", type: 'dir')
 
   main:
-    updatePangolin(Channel.of(true))
+    updatePangolin(Channel.of(params.update_pangolin))
     getConsensusFile(ch_sample_dirs.flatMap{ it -> it })
     pangolin(getConsensusFile.out.combine(updatePangolin.out))
     alignConsensusToReference(getConsensusFile.out)
